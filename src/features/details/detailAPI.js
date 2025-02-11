@@ -1,10 +1,9 @@
-export function fetchAllBar(userData) {
+export function fetchAllDetail() {
   return new Promise(async (resolve) => {
     // TODO: we will not hardcode server url here
-    const response = await fetch("/user/", {
-      method: "PATCH",
+    const response = await fetch("http://localhost:3000/details/", {
+      method: "GET",
       credentials: "include",
-      body: JSON.stringify(userData),
       headers: { "content-type": "application/json" },
     });
     const data = await response.json();
