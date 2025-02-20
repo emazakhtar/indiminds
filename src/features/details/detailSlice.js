@@ -9,11 +9,13 @@ const initialState = {
 
 export const fetchAllDetailsAsync = createAsyncThunk(
   "details/fetchAllDetails",
-  async ({ email }) => {
-    const response = await fetchAllDetail(email);
+  async () => {
+    const response = await fetchAllDetail();
+    console.log("detail API called");
     return response.data;
   }
 );
+
 export const detailsSlice = createSlice({
   name: "details",
   initialState,
@@ -25,7 +27,9 @@ export const detailsSlice = createSlice({
       })
       .addCase(fetchAllDetailsAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.chartList = action.payload;
+        console.log("details fulfilled", state.detailsList);
+
+        state.detailsList = action.payload;
       })
       .addCase(fetchAllDetailsAsync.rejected, (state, action) => {
         state.status = "idle";
@@ -33,6 +37,6 @@ export const detailsSlice = createSlice({
   },
 });
 
-export const selectDetails = (state) => state.details.detailList;
+export const selectDetails = (state) => state.details.detailsList;
 
 export default detailsSlice.reducer;

@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllSummaryAsync } from "../summary/summarySlice";
-import { fetchAllDetailsAsync } from "../details/detailSlice";
-import { useEffect } from "react";
 import { Table } from "../table/Table";
+import { fetchAllSummaryAsync, selectSummary } from "../summary/summarySlice";
+import { fetchAllDetailsAsync, selectDetails } from "../details/detailSlice";
+import { useEffect } from "react";
 
 export function Home() {
   const dispatch = useDispatch();
-  const summary = useSelector((state) => state.summary.data);
-  const details = useSelector((state) => state.details.data);
+  const summary = useSelector(selectSummary);
+  const details = useSelector(selectDetails);
+
+  console.log("details", details);
 
   useEffect(() => {
     dispatch(fetchAllSummaryAsync());
@@ -15,11 +17,11 @@ export function Home() {
   }, [dispatch]);
 
   return (
-    <div className="p-4">
+    <div className="p-4 ">
       <h2 className="text-xl font-semibold">Live Position Detail</h2>
-      <Table data={details} />
+      <Table data={{ message: details?.message || [] }} />
       <h2 className="text-xl font-semibold mt-6">Live Position Summary</h2>
-      <Table data={summary} />
+      <Table data={{ message: summary?.message || [] }} />
     </div>
   );
 }

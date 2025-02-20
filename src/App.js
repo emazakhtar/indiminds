@@ -12,7 +12,6 @@ import { Header } from "./features/header/Header";
 function App() {
   return (
     <div className="App">
-      return (
       <div className="min-h-screen bg-gray-100">
         <Header />
         <Routes>
@@ -23,7 +22,6 @@ function App() {
           <Route path="/chart" element={<Chart />} />
         </Routes>
       </div>
-      );
     </div>
   );
 }

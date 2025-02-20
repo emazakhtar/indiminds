@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchAllDetailsAsync } from "./detailSlice";
+import { fetchAllDetailsAsync, selectDetails } from "./detailSlice";
 import { Table } from "../table/Table";
 
 export function Details() {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.details.data);
+  const details = useSelector(selectDetails);
+  console.log("detail data", details);
 
   useEffect(() => {
     dispatch(fetchAllDetailsAsync());
   }, [dispatch]);
-  return <Table data={data} />;
+
+  return <Table data={{ message: details?.message || [] }} />;
 }

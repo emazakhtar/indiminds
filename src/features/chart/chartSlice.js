@@ -9,8 +9,8 @@ const initialState = {
 
 export const fetchAllChartAsync = createAsyncThunk(
   "chart/fetchAllChart",
-  async ({ email }) => {
-    const response = await fetchAllChart(email);
+  async () => {
+    const response = await fetchAllChart();
     return response.data;
   }
 );
@@ -33,6 +33,6 @@ export const chartSlice = createSlice({
   },
 });
 
-export const selectChart = (state) => state.bar.barList;
+export const selectChart = (state) => state.chart.chartList;
 
 export default chartSlice.reducer;

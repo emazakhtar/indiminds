@@ -9,8 +9,8 @@ const initialState = {
 
 export const fetchAllSummaryAsync = createAsyncThunk(
   "summary/fetchAllSummary",
-  async ({ email }) => {
-    const response = await fetchAllSummary(email);
+  async () => {
+    const response = await fetchAllSummary();
     return response.data;
   }
 );
